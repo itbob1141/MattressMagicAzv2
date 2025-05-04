@@ -235,7 +235,7 @@ import { SITE_NAME, STORE_INFO } from '../constants';
   </div>
 </div>
 
-<script>
+<script is:inline>
   if (typeof window !== 'undefined') {
     const params = new URLSearchParams(window.location.search);
     if (params.get('success') === 'true') {
