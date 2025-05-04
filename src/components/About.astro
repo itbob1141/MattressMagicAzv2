@@ -1,0 +1,54 @@
+---
+import { SITE_NAME } from '../constants';
+import pugImage from '../assets/puggetscozyinthemorning.jpg';
+---
+
+<div class='relative bg-white'>
+  <div
+    class='mx-auto max-w-7xl lg:flex lg:justify-between lg:px-8 xl:justify-end'
+  >
+    <div
+      class='lg:flex lg:w-1/2 lg:shrink lg:grow-0 xl:absolute xl:inset-y-0 xl:right-1/2 xl:w-1/2'
+    >
+      <div class='relative h-80 lg:-ml-8 lg:h-auto lg:w-full lg:grow xl:ml-0'>
+        <img
+          class='absolute inset-0 h-full w-full bg-gray-50 object-cover'
+          src={pugImage.src}
+          alt='Photo of Bruce and Cody Kiraly'
+        />
+      </div>
+    </div>
+    <div class='px-6 lg:contents'>
+      <div
+        class='mx-auto max-w-2xl pb-24 pt-16 sm:pb-32 sm:pt-20 lg:ml-8 lg:mr-0 lg:w-full lg:max-w-lg lg:flex-none lg:pt-32 xl:w-1/2'
+      >
+        <p class='text-base font-semibold leading-7 text-copaBlue-700'>
+          More than just a mattress store
+        </p>
+        <h1
+          class='mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl'
+        >
+          Welcome to Mattress Magic AZ – Where Comfort Meets Value.
+        </h1>
+        <p class='mt-6 text-xl leading-8 text-gray-700'>
+		
+		  Family-owned and proudly serving Phoenix and Tempe since 2010, <strong> {SITE_NAME}</strong> was founded on a simple belief: better health starts with better sleep. We know that few things are more important than a good night’s rest, and we’re committed to helping our customers find exactly what they need to sleep well and save big.   
+        </p>
+        <div
+          class='mt-10 max-w-xl text-base leading-7 text-gray-700 lg:max-w-none'
+        >
+          <p>
+		    At {SITE_NAME}, “The Magic is in the deal and how great you’re gonna feel.” That’s not just a slogan — it’s our promise. We work closely with suppliers to bring high-quality mattresses and furniture at a fraction of the price you’d find at big-box retailers. Whether you're shopping for a new mattress, furniture, or bedding accessories, you'll always find unbeatable deals and genuine customer care.
+          </p>
+          <p class='mt-8'>
+            We specialize in comfort, value, and personalized service. Our team is here to guide you through every step of the process — helping you discover the perfect level of support and style that suits your lifestyle and budget. With well-known, reputable brands and a dedication to quality, we make sure you leave with more than just a mattress — you leave with peace of mind.
+          </p>
+          <p class='mt-8'>
+            Thank you for making us your trusted local source for better sleep. We look forward to serving you for many more years to come.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

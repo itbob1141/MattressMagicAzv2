@@ -1,0 +1,9 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { FURNITURE } from '@/constants/furniture';
+import ShopFurniturePageFilters from '@/components/ShopFurniturePageFilters'
+---
+
+<Layout title='Shop Furniture'>
+  <ShopFurniturePageFilters client:load furniture={FURNITURE} />
+</Layout>

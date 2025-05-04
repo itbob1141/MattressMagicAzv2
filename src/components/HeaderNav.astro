@@ -1,0 +1,148 @@
+---
+import { SITE_NAME, HEADER_NAV_LINKS } from '@/constants';
+import {HEADER_CTA_BUTTON, STORE_INFO} from '../constants';
+import logo from '../assets/copa-logo.jpg';
+---
+
+<header class='bg-white'>
+  <nav
+    class='mx-auto flex max-w-7xl items-center justify-between gap-x-6 p-6 lg:px-8'
+    aria-label='Global'
+  >
+    <div class='flex lg:flex-1'>
+      <a href='/' class='-m-1.5 p-1.5'>
+        <span class='sr-only'>{SITE_NAME}</span>
+        <img
+          class='h-12 w-auto'
+          src={logo.src}
+          alt='Mattress Magic AZ Logo'
+        />
+      </a>
+    </div>
+    <div class='hidden lg:flex lg:gap-x-12'>
+      {
+        HEADER_NAV_LINKS.map((link) => (
+          <a
+            href={link.url}
+            class='text-sm font-semibold leading-6 text-gray-900'
+          >
+            {link.name}
+          </a>
+        ))
+      }
+    </div>
+    <div class='flex flex-1 items-center justify-end gap-x-6'>
+      <a
+        href={HEADER_CTA_BUTTON.url}
+        class='rounded-md bg-copaBlue-700 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-copaBlue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copaBlue-700'
+      >
+        {HEADER_CTA_BUTTON.name}
+      </a>
+      <a class='hover:text-gray-900' href=`tel:${STORE_INFO.phone}`>
+        <div class='flex gap-x-2'>
+          <dt class='flex-none'>
+            <span class='sr-only'>Telephone</span>
+            <svg
+               class='h-7 w-6 text-black'
+               fill='solid'
+               viewBox='0 0 24 24'
+               stroke-width='1.5'
+               stroke='currentColor'
+               aria-hidden='true'
+               data-slot='icon'
+            >
+              <path
+                 stroke-linecap='round'
+                 stroke-linejoin='round'
+                 d='M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z'
+              ></path>
+            </svg>
+          </dt>
+          <dd>
+            <span class="hidden sm:block">{STORE_INFO.phone}</span>
+          </dd>
+        </div>
+      </a>
+      </div>
+
+    <div class='flex lg:hidden'>
+      <button
+        type='button'
+        id='menuButton'
+        class='-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700'
+      >
+        <span class='sr-only'>Open main menu</span>
+        <svg
+          class='h-6 w-6'
+          fill='none'
+          viewBox='0 0 24 24'
+          stroke-width='1.5'
+          stroke='currentColor'
+          aria-hidden='true'
+        >
+          <path
+            stroke-linecap='round'
+            stroke-linejoin='round'
+            d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5'></path>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id='mobileMenu' class='lg:hidden hidden fixed inset-0 z-50 bg-white'>
+    <div class='p-6'>
+      <div class='flex items-center justify-between'>
+        <img class='h-8 w-auto' src={logo.src} alt='Logo' />
+        <button type='button' id='closeButton' class='text-gray-700'>
+          <svg
+            class='h-6 w-6'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke-width='1.5'
+            stroke='currentColor'
+          >
+            <path
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              d='M6 18L18 6M6 6l12 12'></path>
+          </svg>
+        </button>
+      </div>
+      <div class='mt-6'>
+        {
+          HEADER_NAV_LINKS.map((link) => (
+            <a
+              href={link.url}
+              class='block py-2 text-base font-semibold text-gray-900'
+            >
+              {link.name}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  function initMenu() {
+    const menuButton = document.getElementById('menuButton');
+    const closeButton = document.getElementById('closeButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (menuButton && closeButton && mobileMenu) {
+      menuButton.addEventListener('click', () => {
+        mobileMenu.classList.remove('hidden');
+      });
+
+      closeButton.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    }
+  }
+
+  initMenu();
+
+  document.addEventListener('astro:page-load', initMenu);
+</script>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Host: https://mattressmagicaz.com
+Sitemap: https://mattressmagicaz.com/sitemap-index.xml

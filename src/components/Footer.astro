@@ -1,0 +1,91 @@
+---
+import { FOOTER_LINKS, SOCIALS } from '@/constants';
+import { type FooterLink, type FooterSection } from '@/types';
+import { SITE_NAME } from '../constants';
+import logo from '../assets/copa-logo.jpg';
+
+function renderFooterItem(item: FooterLink | FooterSection): string {
+  if ('links' in item) {
+    return `
+      <div class="mt-10 md:mt-0">
+        <h3 class="text-sm font-semibold leading-6 text-gray-900">${item.label}</h3>
+        <ul class="mt-6 space-y-4">
+          ${item.links
+            .map((subItem) => {
+              if ('links' in subItem) {
+                // Handle nested lists
+                return `
+                <li>
+                  <span class="text-sm font-semibold leading-6 text-gray-900">${subItem.label}</span>
+                  <ul class="mt-2 space-y-2">
+                    ${subItem.links.map((nestedItem) => renderFooterItem(nestedItem)).join('')}
+                  </ul>
+                </li>
+              `;
+              }
+              return renderFooterItem(subItem);
+            })
+            .join('')}
+        </ul>
+      </div>
+    `;
+  }
+  return `
+    <li>
+      <a href="${item.href}" class="text-sm leading-6 text-gray-600 hover:text-gray-900">
+        ${item.label}
+      </a>
+    </li>
+  `;
+}
+---
+
+<footer class='bg-white' aria-labelledby='footer-heading'>
+  <h2 id='footer-heading' class='sr-only'>Footer</h2>
+  <div class='mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32'>
+    <div class='xl:grid xl:grid-cols-3 xl:gap-8'>
+      <div class='space-y-8'>
+        <img class='h-16' src={logo.src} alt={SITE_NAME} />
+        <p class='text-sm leading-6 text-gray-600'>
+          Your Local Mattress Destination in Maricopa
+        </p>
+        <div class='flex space-x-6'>
+          {
+            SOCIALS.map((social) => (
+              <a
+                href={social.url}
+                class='text-gray-400 hover:text-gray-500'
+                set:html={social.icon}
+              >
+                <span class='sr-only'>{social.type}</span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+      <div
+        class='mt-16 grid grid-cols-1 gap-8 xl:col-span-2 xl:mt-0 md:grid-cols-3'
+      >
+        {
+          FOOTER_LINKS.map((section) => (
+            <div class='md:grid md:grid-cols-1 md:gap-8'>
+              <Fragment set:html={renderFooterItem(section)} />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+    <div class='mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24'>
+      <p class='text-xs leading-5 text-gray-500'>
+        &copy; <span id='currentYear'></span> - Built by <a
+          href='https://www.themilneempire.com'
+          class='underline'>The Milne Empire</a
+        > - All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script is:inline>
+  document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>

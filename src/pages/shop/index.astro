@@ -1,0 +1,9 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { PRODUCTS } from '../../constants';
+import ShopPageFilters from '@/components/ShopPageFilters'
+---
+
+<Layout title='Shop'>
+  <ShopPageFilters client:load products={PRODUCTS} />
+</Layout>

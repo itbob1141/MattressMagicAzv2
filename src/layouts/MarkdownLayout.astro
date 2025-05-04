@@ -1,0 +1,37 @@
+---
+import Layout from './Layout.astro';
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title}>
+  <article class='max-w-3xl mx-auto px-4 py-8'>
+    <h1 class='text-4xl text-center font-bold mb-6'>{frontmatter.title}</h1>
+    <div class='prose prose-lg max-w-none leading-relaxed custom-content'>
+      <slot />
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .custom-content {
+    @apply text-lg leading-relaxed;
+  }
+  .custom-content a,
+  .custom-content a strong {
+    @apply underline text-blue-600 hover:text-blue-800;
+  }
+  .custom-content a:visited,
+  .custom-content a:visited strong {
+    @apply text-purple-600;
+  }
+  .custom-content h2 {
+    @apply text-2xl font-bold mt-8 mb-4;
+  }
+  .custom-content p {
+    @apply mb-6;
+  }
+  .custom-content hr {
+    @apply my-8 border-t border-gray-300;
+  }
+</style>

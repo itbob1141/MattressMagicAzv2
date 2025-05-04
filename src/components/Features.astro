@@ -1,0 +1,49 @@
+---
+import { FEATURES, SITE_NAME } from '@/constants';
+import { Icon } from 'astro-icon/components';
+---
+
+<div class='bg-white py-24 sm:py-32' id='features'>
+  <div class='mx-auto max-w-7xl px-6 lg:px-8'>
+    <div class='mx-auto max-w-2xl lg:mx-0'>
+      <h2 class='text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl'>
+        Why Choose Us
+      </h2>
+      <p class='mt-6 text-lg leading-8 text-gray-600'>
+        These are what separates us from the rest. Read below to see what our
+        customers love most about {SITE_NAME}.
+      </p>
+    </div>
+    <div class='mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none'>
+      <dl
+        class='grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-4'
+      >
+        {
+          FEATURES.map((feature, index) => (
+            <div class='group relative rounded-2xl bg-gray-50 p-6 ring-1 ring-gray-200 transition-all duration-200 hover:bg-gray-100 hover:shadow-md'>
+              <dt class='flex flex-col gap-6 text-base font-semibold leading-7 text-gray-900'>
+                <div class='flex h-10 w-10 items-center justify-center rounded-lg bg-copaBlue-700 transition-transform duration-200 group-hover:scale-110'>
+                  <Icon name={feature.icon} class='h-6 w-6 text-white' />
+                </div>
+                {feature.name}
+              </dt>
+              <dd class='mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600'>
+                <p class='mt-6'>
+                    {feature.url && (
+                       <a
+                          href={feature.url}
+                          class='inline-flex items-center text-sm font-semibold leading-6 text-copaBlue-700 transition-colors duration-200 hover:text-copaBlue-800'
+                       >
+                           {feature.linkText}
+                           <span aria-hidden='true' class='ml-1 transition-transform duration-200 group-hover:translate-x-1'>→</span>
+                       </a>
+                    )}
+                </p>
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </div>
+</div>
