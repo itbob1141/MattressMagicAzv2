@@ -250,6 +250,12 @@ import { SITE_NAME, STORE_INFO } from '../constants';
         'value': 1.0,
         'currency': 'USD'
       });
+
+	// Clean URL: remove ?success=true without reloading
+      if (window.history.replaceState) {
+        const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        window.history.replaceState({}, document.title, newUrl);
+	}
     }
   }
 </script>
